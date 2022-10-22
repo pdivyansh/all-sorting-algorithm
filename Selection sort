@@ -1,0 +1,41 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        // tajking input part of sorting
+        System.out.println("Enter the no of element in array:");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            System.out.println("enter the element of array"+(i+1));
+            arr[i]=sc.nextInt();
+        }
+        // logic part of sorting
+        
+        for(int i=0;i<n-1;i++){
+            int min=arr[i];
+            int index=i;
+            for(int j=i+1;j<n;j++){
+                if(min>arr[j]){
+                    min=arr[j];
+                    index=j;
+                }
+            }
+            int temp=arr[i];
+            arr[i]=arr[index];
+            arr[index]=temp;
+            
+        }
+        
+        
+        // printing part of sorting
+        System.out.println("printing the sorted array:");
+        for(int i=0;i<n;i++){
+          System.out.print(arr[i]+" ");  
+            
+        }
+      
+    }
+}
