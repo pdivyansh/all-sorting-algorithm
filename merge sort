@@ -1,0 +1,72 @@
+
+import java.util.*;
+class HelloWorld {
+    public static void merge(int arr[],int low ,int mid,int high){
+        int brr[]=new int[high-low+1];
+        int i=low;
+        int j=mid+1;
+        int k=0;
+        while(i<=mid && j<=high){
+            if(arr[i]<arr[j]){
+                brr[k]=arr[i];
+                i++;
+            }else{
+                brr[k]=arr[j];
+                j++;
+            }
+            k++;
+        }
+        while(i<=mid){
+            brr[k]=arr[i];
+            i++;
+            k++;
+        }
+        while(j<=high){
+            brr[k]=arr[j];
+            j++;
+            k++;
+        }
+        
+        for(int l=0;l<brr.length;l++){
+            
+            arr[low+l]=brr[l];
+            
+          
+        }
+        System.out.println(" ");
+    }
+    public static void mergesort(int arr[],int low,int high){
+        if(low<high){
+            int mid=(low+high)/2;
+            mergesort(arr,low,mid);
+            mergesort(arr,mid+1,high);
+            merge(arr,low,mid,high);
+           
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        // tajking input part of sorting
+        System.out.println("Enter the no of element in array:");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            System.out.println("enter the element of array"+(i+1));
+            arr[i]=sc.nextInt();
+        }
+        // logic part of sorting
+        
+       
+         mergesort(arr,0,n-1);   
+        
+        
+        
+        // printing part of sorting
+        System.out.println("printing the sorted array:");
+        for(int i=0;i<n;i++){
+          System.out.print(arr[i]+" ");  
+            
+        }
+      
+    }
+}
