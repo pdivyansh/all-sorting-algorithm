@@ -1,0 +1,66 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.println("ENTER THE NUMBER OF ELEMENT: ");
+       int n=sc.nextInt();
+       System.out.println("ENTER THE VALUE OF KNAPSACK : ");
+       int m=sc.nextInt();
+       int prr[]=new int[n];
+       System.out.println("ENTER THE PROFIT");
+       for(int i=0;i<n;i++){
+           System.out.println("ENTER THE ELEMENT OF PROFIT ARRAY: "+(i+1));
+           prr[i]=sc.nextInt();
+       }
+       int wrr[]=new int[n];
+       System.out.println("ENTER THE WEIGHT");
+       for(int i=0;i<n;i++){
+           System.out.println("ENTER THE ELEMENT OF WEIGHT ARRAY: "+(i+1));
+           wrr[i]=sc.nextInt();
+       }
+       double pwratio[]=new double[n];
+       for(int i=0;i<n;i++){
+           pwratio[i]=(double)prr[i]/wrr[i];
+           System.out.println("pofit/ratio :"+pwratio[i]);
+       }
+       double profitsum=0;
+       double weightsum=0;
+       //Arrays.sort(pwratio);
+       
+       
+       while(weightsum<m){
+          double max=pwratio[0];
+          int index=0;
+          for(int i=1;i<n;i++){
+              if(max<pwratio[i]){
+                  max=pwratio[i];
+                  index=i;
+              }
+              
+          }
+          pwratio[index]=-1;
+          System.out.println(max);
+          
+          if(m-weightsum>wrr[index]){
+              profitsum+=prr[index];
+             weightsum+=wrr[index];
+          }else{
+             profitsum+=prr[index]*(m-weightsum)/wrr[index];
+             weightsum+=wrr[index];
+          }
+          System.out.println(profitsum);
+          System.out.println(weightsum);
+           
+       }
+       System.out.println(profitsum);
+       
+       
+       
+       
+       
+       
+       
+    }
+}
