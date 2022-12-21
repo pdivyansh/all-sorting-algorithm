@@ -1,0 +1,74 @@
+import java.util.*;
+class HelloWorld {
+    private static int partition(int[] input,int start, int end){
+        int pivot_element=input[start];
+        int temp;
+        int count=0;
+        for(int i=start+1;i<=end;i++){
+            if(input[i]<=pivot_element){
+                count++;
+            }
+        }
+        int pivot_position=start+count;
+        temp=input[start];
+        input[start]=input[start+count];
+        input[start+count]=temp;
+        int i=start;
+        int j=end;
+        while(i<j && i<pivot_position && j>pivot_position){
+        while(input[i]<=pivot_element){
+            i++; 
+        }
+        while(input[j]>pivot_element){
+            j--;
+        }
+    	if(i<=j){
+        temp=input[i];
+        input[i]=input[j];
+        input[j]=temp;
+            i++;
+            j--;
+        }
+        
+        }
+        return pivot_position;
+            
+    }
+    
+    private static void quicksort(int[] input, int start,int end){
+        // base case
+        if(start>=end)
+            return ;
+        
+        int partition_position=partition(input,start,end);
+        quicksort(input,start,partition_position-1);
+        quicksort(input,partition_position+1,end);
+    }
+	
+	
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        // taking input part of sorting
+        System.out.println("Enter the no of element in array:");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            System.out.println("enter the element of array"+(i+1));
+            arr[i]=sc.nextInt();
+        }
+        // logic part of sorting
+        
+       
+         quicksort(arr,0,n-1); 
+        
+        
+        
+        // printing part of sorting
+        System.out.println("printing the sorted array:");
+        for(int i=0;i<n;i++){
+          System.out.print(arr[i]+" ");  
+            
+        }
+      
+    }
+}
